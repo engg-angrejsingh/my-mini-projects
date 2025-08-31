@@ -17,7 +17,7 @@ A simple and interactive **Calculator** built using **HTML, CSS, and JavaScript*
 
 ## Demo
 
-![Light Mode](Demo/lightmode.png)
+![Light Mode](Demo/light-mode.png)
 
 ![Dark Mode](Demo/darkmode.png)
 
