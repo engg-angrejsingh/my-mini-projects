@@ -1,41 +1,24 @@
-# My Project 
-# Calculator Web App
+# Mini Projects Repository
 
-A simple and interactive **Calculator** built using **HTML, CSS, and JavaScript**. This project demonstrates DOM manipulation, event handling, and basic arithmetic operations in JavaScript.
+This repository contains a collection of small projects built using HTML, CSS, JavaScript, and Python. These projects are designed to practice coding skills, explore new concepts, and create fun, interactive mini-applications.
 
----
+## Projects
 
-## Features
+### 1. Calculator
 
-- Addition, subtraction, multiplication, and division
-- Clear and reset functionality
-- Responsive and user-friendly interface
-- Light and dark mode support (if implemented)
-- Real-time input display
+A simple web-based calculator that performs basic arithmetic operations.
 
----
+- **Technologies Used**: HTML, CSS, JavaScript
+- **Features**:
+  - Addition, subtraction, multiplication, and division
+  - Clear and reset functionality
+  - Responsive design for mobile and desktop
+- **Screenshot**:
+  ![Calculator Screenshot](Demo/dark-light.png.png)
+- **Live Demo**: [Calculator Demo](Demo/calc.mp4)
 
-## Demo
-
-![Light Mode and Dark Mode](Demo/dark-light.png)
-
-
-
-
----
-
-## Technologies Used
-
-- **HTML** – Structure of the calculator
-- **CSS** – Styling and layout
-- **JavaScript** – Calculator logic and DOM interactions
-- **Icon Libraries** (like Remix Icon) for buttons
-
----
-
-## Installation / Usage
+## How to Run
 
 1. Clone the repository:
-
-```bash
-git clone https://github.com/engg-angrejsingh/my-mini-projects.git
+   ```bash
+   git clone https://github.com/engg-angrejsingh/my-mini-projects.git
