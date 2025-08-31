@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #bbe3e7d0; /* Light mode default */
+    transition: background 0.3s ease;
+    position: relative;
+}
+
+.calculator-container {
+    text-align: center;
+}
+
+.mode-toggle {
+    position: absolute; 
+    top: 15px;
+    right: 25px;
+    background: transparent;
+    margin-bottom: 20px;
+}
+
+#toggleMode {
+    font-size: 24px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    transition:  0.3s ease;
+}
+
+/* Calculator */
+.calculator {
+    background: rgba(255,255,255,0.8);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.72);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    max-width: 360px;
+}
+
+input {
+    width: 100%;
+    border: none;
+    padding: 20px;
+    font-size: 36px;
+    text-align: right;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: rgba(240,240,240,0.6);
+    color: #333;
+    outline: none;
+}
+
+/* Button rows */
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+button {
+    flex: 1 1 20%;
+    margin: 5px;
+    padding: 18px 0;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    
+}
+
+/* Functional buttons */
+button.func {
+    background: #ccc;
+    color: #333;
+}
+
+/* Operators */
+button.operator {
+    background: #87ceeb;
+    color: #fff;
+}
+
+/* Equal button */
+button.equalBtn {
+    background: #ff9500;
+    color: #fff;
+}
+
+/* Hover & active */
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Dark mode */
+body.dark-mode {
+    background: #0a0a0a;
+}
+
+
+body.dark-mode #toggleMode {
+    background: transparent;
+    color: #fff;
+}
+
+body.dark-mode .calculator {
+    background: rgba(20,20,20,0.95);
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.7);
+}
+
+body.dark-mode input {
+    background: rgba(40,40,40,0.7);
+    color: #fff;
+}
+
+body.dark-mode button.func {
+    background: #333;
+    color: #6dee0a;
+}
+
+body.dark-mode button.operator {
+    background: #0066cc;
+}
+
+body.dark-mode button.equalBtn {
+    background: #d49829;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .mode-toggle{
+        visibility: hidden;
+    }
+    
+}
