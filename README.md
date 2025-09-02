@@ -6,8 +6,13 @@ This repository is a collection of **small, hands-on projects** built to practic
 
 ## Current Projects
 
-- **Calculator** – A simple web-based calculator to perform basic arithmetic operations.
-- *(More projects coming soon: Weather App, To-Do List, etc.)*
+## Projects
+
+| Name         | Description                                      | Tech Stack        | Status           |
+|--------------|--------------------------------------------------|-------------------|------------------|
+| **Calculator** | A simple web-based calculator (basic arithmetic) | HTML, CSS, JS     | Completed        |
+| **To-Do List** | A task manager app to add, edit, and delete items | HTML, CSS, JS     | Coming Soon      |
+| **Weather App** | Fetches and displays live weather data via API  | HTML, CSS, JS     | Planned          |
 
 ---
 
