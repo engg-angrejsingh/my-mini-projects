@@ -12,7 +12,7 @@ This repository is a collection of **small, hands-on projects** built to practic
 |--------------|--------------------------------------------------|-------------------|------------------|
 | **Calculator** | A simple web-based calculator (basic arithmetic) | HTML, CSS, JS     | Completed        |
 | **To-Do List** | A task manager app to add, edit, and delete items | HTML, CSS, JS     | Completed      |
-| **Rock-Paper-Scissors** | Playable game against the computer with classic rules | HTML, CSS, JS     | Completed        |
+| **Rock-Paper-Scissor** | Playable game against the computer with classic rules | HTML, CSS, JS     | Completed        |
 | **Weather App** | Fetches and displays live weather data via API  | HTML, CSS, JS     | Comeing Soon          |
 
 ---
