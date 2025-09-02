@@ -15,7 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(assets/image.jpg) no-repeat center center/cover;
+    background: url(assets/background.jpg) no-repeat center center/cover;
 }
 
 /* Main container for centering content */
@@ -40,9 +40,9 @@ body {
     gap: 30px;
     color: #fff;
     border-radius: 20px;
-    box-shadow: 0 0 100px rgba(0,0,0,0.5);
+    box-shadow: 0 0 100px rgba(0,0,0,0.6);
     border: 3px solid rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 }
 
 /* App heading */
@@ -123,11 +123,12 @@ body {
     border-radius: 22px;
     background: rgba(255, 194,209,0.3);
     color: #dbdbdb;
+    
 }
 
 /* Placeholder text color */
 .input-area input::placeholder {
-    color: #bcbcbc;
+    color: #621515;
 }
 
 /* Add button styling */
