@@ -14,8 +14,8 @@ A simple web-based calculator that performs basic arithmetic operations.
   - Clear and reset functionality
   - Responsive design for mobile and desktop
 - **Screenshot**:
-  ![Calculator Screenshot](Demo/dark-light.png)
-- **Live Demo**: [Calculator Demo](Demo/calc.mp4)
+  ![Calculator Screenshot](assets/dark-light.png)
+- **Live Demo**: [Calculator Demo](assets/calc.mp4)
 
 ## How to Run
 
