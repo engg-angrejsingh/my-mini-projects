@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures responsive design on mobile devices -->
+    <title>Rock Paper Scissor</title> <!-- Title of the webpage -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS stylesheet -->
+</head>
+<body>
+    <!-- Main container for the game -->
+    <div id="main">
+        <!-- Header section displaying the game title -->
+        <div id="header">
+            <h1>Rock Paper Scissor</h1>
+        </div>
+
+        <!-- Section showing the scores and images for User and Computer -->
+        <div id="choice">
+            <!-- User score and current choice image -->
+            <div id="user">
+                <h1>User</h1>
+                <span>0</span> <!-- User score -->
+                <img src="assets/paper.png" alt=""> <!-- Default image for user -->
+            </div>
+
+            <!-- Computer score and current choice image -->
+            <div id="comp">
+                <h1>Comp..</h1>
+                <span>0</span> <!-- Computer score -->
+                <img src="assets/rock.png" alt=""> <!-- Default image for computer -->
+            </div>
+        </div>
+
+        <!-- Section to display game result -->
+        <div id="result">
+            <h1>Play Game</h1> <!-- Default message before playing -->
+        </div>
+
+        <!-- Section for user to select Rock, Paper, or Scissor -->
+        <div id="userChoice">
+            <img src="assets/rock.png" alt=""> <!-- Rock choice -->
+            <img src="assets/Scissor.png" alt=""> <!-- Scissor choice -->
+            <img src="assets/paper.png" alt=""> <!-- Paper choice -->
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript file controlling game logic -->
+    <script src="script.js"></script>
+</body>
+</html>

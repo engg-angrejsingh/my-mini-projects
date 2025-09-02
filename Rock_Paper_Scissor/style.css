@@ -1,0 +1,137 @@
+/* Reset default styles and set global box-sizing */
+* {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
+    font-family: sans-serif; /* Default font for the page */
+}
+
+/* Set full width and height, and background color for page */
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: cornflowerblue; /* Page background */
+}
+
+/* Main container for the game */
+#main {
+    width: 100%; /* Full width */
+}
+
+/* Header section styling */
+#header {
+    width: 100%; /* Full width */
+    height: 80px; /* Fixed height */
+    background-color: rgb(85, 19, 102); /* Purple background */
+    box-shadow: 0 5px 10px 0 black; /* Shadow below header */
+    border-bottom: 1px solid black; /* Bottom border */
+    color: #fff; /* White text */
+    display: flex; /* Flex for centering */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+}
+
+/* Container for user and computer choices */
+#choice {
+    width: 100%; /* Full width */
+    height: 270px; /* Fixed height */
+    display: flex; /* Flex layout for side-by-side items */
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Horizontally center items */
+    gap: 25px; /* Space between user and computer blocks */
+    /* background-color: blue; */ /* Optional debug background */
+}
+
+/* Style for score number inside choice section */
+#choice span {
+    font-size: 25px; /* Size of score text */
+    font-weight: 500; /* Semi-bold */
+    display: block; /* Make it block to control margin */
+    margin: 10px 0; /* Top and bottom margin */
+    text-align: center; /* Center text */
+    /* Note: span is inline by default, so height/width won't affect inner content */
+}
+
+/* Style for user/computer heading and image */
+#choice div h1,
+img {
+    width: 130px; /* Fixed width for headings and images */
+    display: flex; /* Flex to center content inside */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mirror computer image horizontally */
+#comp img {
+    transform: scaleX(-1);
+}
+
+/* Result display container */
+#result {
+    width: 100%;
+    padding: 0 20px; /* Horizontal padding */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center result text */
+}
+
+/* Result heading styling */
+#result h1 {
+    padding: 10px 15px; /* Padding around text */
+    width: fit-content; /* Adjust width based on content */
+    font-size: 25px; /* Font size */
+    text-align: center;
+    border-radius: 10px; /* Rounded corners */
+    background-color: purple; /* Background color */
+    box-shadow: 1px 1px 10px 4px black; /* Shadow for 3D effect */
+    border: 1px solid black; /* Border around result box */
+    color: #fff; /* White text */
+}
+
+/* User choice buttons container */
+#userChoice {
+    padding: 30px; /* Space around choices */
+    display: flex; /* Flex layout for buttons */
+    align-items: center; /* Vertical alignment */
+    justify-content: center; /* Horizontal alignment */
+    gap: 15px; /* Space between buttons */
+}
+
+/* User choice images styling */
+#userChoice img {
+    transform: rotate(-90deg); /* Rotate images */
+    width: 100px; /* Fixed width */
+    cursor: pointer; /* Cursor pointer on hover */
+    transition: filter 0.5s; /* Smooth filter transition on hover */
+}
+
+/* Hover effect for user choice images (only works in SCSS) */
+/* If pure CSS, use :hover outside nested block */
+#userChoice img:hover {
+    filter: drop-shadow(1px 1px 13px black); /* Shadow effect on hover */
+}
+
+/* Responsive design for screens <= 450px */
+@media screen and (max-width: 450px) {
+    #header {
+        font-size: 12px; /* Smaller font in header */
+    }
+    #choice {
+        height: 300px; /* Slightly taller container for small screens */
+    }
+    #choice div h1,
+    span,
+    img {
+        font-size: 20px; /* Smaller text */
+        width: 100px; /* Reduce width */
+        text-align: center;
+    }
+    #result h1 {
+        font-size: 14px; /* Smaller result text */
+        margin-bottom: 20px; /* Add bottom spacing */
+    }
+    #userChoice img {
+        width: 75px; /* Smaller choice buttons */
+    }
+}
