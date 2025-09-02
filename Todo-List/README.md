@@ -24,9 +24,8 @@ It allows users to manage their daily tasks efficiently and keeps data saved usi
 
 ---
 
-## 📸 Screenshot
-*(Add your screenshot here)*  
-![App Screenshot](screenshot.png)
+## 📸 Screenshot 
+![App Screenshot](assets/screenshot.png)
 
 ---
 
