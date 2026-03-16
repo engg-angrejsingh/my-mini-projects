@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mini Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(270deg, #0e1629, #18202e, #020617);
+        background-size: 600% 600%;
+        animation: bgMove 15s ease infinite;
+    }
+
+
+
+    /* header */
+
+    header {
+        text-align: center;
+        padding: 40px;
+    }
+
+    header h1 {
+        font-size: 40px;
+    }
+
+    /* project grid */
+
+    .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 50px;
+        padding: 40px;
+        flex: 1;
+    }
+
+    /* project card */
+
+    .card {
+        position: relative;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        overflow: hidden;
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-height: fit-content;
+        background: linear-gradient(270deg, #1a2a4e, #020a18, #222c36);
+        background-size: 600% 600%;
+        animation: bgMove 8s ease infinite;
+    }
+
+    /* hover lift */
+
+    .card:hover {
+        transform: translateY(-8px);
+    }
+
+    /* EVEN cards glow */
+
+    .card:nth-child(even) {
+        box-shadow:
+            0 0 10px #00ffff,
+            0 0 25px #00ffff;
+    }
+
+    /* ODD cards glow */
+
+    .card:nth-child(odd) {
+        box-shadow:
+            0 0 10px #ff00ff,
+            0 0 25px #ff00ff;
+    }
+
+    /* RGB animated border */
+
+    .card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+
+        background: linear-gradient(45deg,
+                red,
+                orange,
+                yellow,
+                lime,
+                cyan,
+                blue,
+                magenta,
+                red);
+
+        background-size: 400%;
+        border-radius: 12px;
+        z-index: -1;
+
+        animation: rgbBorder 6s linear infinite;
+    }
+
+    /* inner background */
+
+    .card::after {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: #1e293b;
+        border-radius: 10px;
+        z-index: -1;
+    }
+
+    /* RGB animation */
+
+    @keyframes rgbBorder {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* card text spacing */
+
+    .card h2 {
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        flex-grow: 1;
+    }
+
+    /* button */
+
+    .card button {
+        margin-top: auto;
+        padding: 10px 20px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .card button:hover {
+        background: #2563eb;
+    }
+
+    /* loading overlay */
+
+    #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0f172a;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1000;
+    }
+
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #334155;
+        border-top: 5px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* typing cursor */
+
+    .cursor {
+        color: #fcfcfc;
+        font-weight: bold;
+        margin-left: 3px;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes bgMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* footer */
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        opacity: 0.7;
+    }
+</style>
+
+<body>
+
+    <header>
+        <h1>Hi, I'm Angrej Singh</h1>
+        <h2><span id="typing"></span><span class="cursor">|</span></h2>
+        <p>Collection of small web development projects</p>
+    </header>
+
+    <section class="projects" id="project-container"></section>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>Loading project...</p>
+    </div>
+
+    <footer>
+        <p>Made by Angrej Singh</p>
+    </footer>
+
+   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+    const loader = document.getElementById("loader");
+
+    window.addEventListener("pageshow", function () {
+    const loader = document.getElementById("loader");
+
+    if (loader) {
+        loader.style.display = "none";
+    }
+    });
+
+    // ---------- PAGE LOAD LOADER ----------
+    if (loader) {
+        loader.style.display = "flex";
+
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 700);
+    }
+
+    // ---------- PROJECT DATA ----------
+    const projectsData = [
+        {
+            title: "Calculator",
+            description: "Simple web calculator for basic arithmetic.",
+            url: "./Calculator/"
+        },
+        {
+            title: "To-Do List",
+            description: "Task manager to add and manage daily tasks.",
+            url: "./Todo-List/"
+        },
+        {
+            title: "Rock Paper Scissor",
+            description: "Play the classic game against the computer.",
+            url: "./Rock_Paper_Scissor/"
+        },
+        {
+            title: "Bubble Hit Game",
+            description: "Hit the correct bubble before the timer runs out.",
+            url: "./Bubble_Hit_Game/"
+        }
+    ];
+
+    // ---------- RENDER PROJECTS ----------
+    const projectContainer = document.getElementById("project-container");
+
+    projectsData
+        .sort((a,b)=>a.title.localeCompare(b.title))
+        .forEach(project => {
+
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+                <h2>${project.title}</h2>
+                <p>${project.description}</p>
+                <button class="view-btn" data-url="${project.url}">
+                    View Project
+                </button>
+            `;
+
+            projectContainer.appendChild(card);
+        });
+
+    // ---------- PROJECT CLICK LOADER ----------
+    document.addEventListener("click", function(e){
+
+        if(e.target.classList.contains("view-btn")){
+
+            const url = e.target.dataset.url;
+
+            if(loader) loader.style.display = "flex";
+
+            setTimeout(()=>{
+                window.location.href = url;
+            },700);
+        }
+    });
+
+    // ---------- TYPING EFFECT ----------
+    const words = [
+        "C • C++ • Java • Python • JavaScript",
+        "Frontend Developer",
+        "JavaScript Developer",
+        "Building Web Projects",
+        "Web Developer"
+    ];
+
+    const typingElement = document.getElementById("typing");
+
+    if(typingElement){
+
+        let wordIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeEffect(){
+
+            const word = words[wordIndex];
+
+            if(!deleting){
+                typingElement.textContent = word.substring(0,charIndex++);
+                if(charIndex > word.length){
+                    deleting = true;
+                    setTimeout(typeEffect,1500);
+                    return;
+                }
+            }else{
+                typingElement.textContent = word.substring(0,charIndex--);
+                if(charIndex < 0){
+                    deleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+            }
+
+            setTimeout(typeEffect, deleting ? 50 : 120);
+        }
+
+        typeEffect();
+    }
+
+});
+
+// ---------- FIX BACK BUTTON LOADER ----------
+window.addEventListener("pageshow", function () {
+    const loader = document.getElementById("loader");
+    if(loader) loader.style.display = "none";
+});
+</script>
+</body>
+
+</html>

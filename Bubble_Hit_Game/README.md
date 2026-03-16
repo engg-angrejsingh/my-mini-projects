@@ -7,7 +7,7 @@ The goal of the game is simple: **hit the correct number bubble before the timer
 
 ## 🎮 Game Preview
 
-![Bubble Hit Game Demo](demo.png)
+![Bubble Hit Game Demo](assets/demo.png)
 
 ---
 
