@@ -1,12 +1,17 @@
-# Mini Projects Repository
+# Mini Projects Repository 
+This repository is a collection of small, hands-on projects built to practice and demonstrate skills in web development and programming.
+The projects are primarily built using HTML, CSS, and JavaScript, and may include Python in future projects.
 
-This repository is a collection of **small, hands-on projects** built to practice and demonstrate skills in **web development and programming**. The projects are primarily built using **HTML, CSS, JavaScript**, and may include **Python** in future projects.
+## 🌐 Portfolio Preview
 
----
+This repository also includes a portfolio page that showcases all projects in a clean and interactive layout.
 
-## Current Projects
+You can preview the portfolio here:
 
-## Projects
+## 🔗 Portfolio Preview
+https://my-mini-projects-ay23.onrender.com/
+
+## 📁 Projects
 
 | Name                   | Description                                                                       | Tech Stack    | Status    |
 | ---------------------- | --------------------------------------------------------------------------------- | ------------- | --------- |
