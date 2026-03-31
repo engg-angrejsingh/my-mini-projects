@@ -13,12 +13,13 @@ https://my-mini-projects-ay23.onrender.com/
 
 ## 📁 Projects
 
-| Name                   | Description                                                                       | Tech Stack    | Status    |
-| ---------------------- | --------------------------------------------------------------------------------- | ------------- | --------- |
-| **Calculator**         | A simple web-based calculator (basic arithmetic)                                  | HTML, CSS, JS | Completed |
-| **To-Do List**         | A task manager app to add, edit, and delete items                                 | HTML, CSS, JS | Completed |
-| **Rock-Paper-Scissor** | Playable game against the computer with classic rules                             | HTML, CSS, JS | Completed |
-| **Bubble Hit Game**    | A fun bubble-click game where players hit the correct number before time runs out | HTML, CSS, JS | Completed |
+| Name                   | Description                                                                                  | Tech Stack                | Status    |
+|------------------------|----------------------------------------------------------------------------------------------|--------------------------|----------|
+| **Calculator**         | A simple web-based calculator (basic arithmetic)                                             | HTML, CSS, JS            | Completed |
+| **To-Do List**         | A task manager app to add, edit, and delete items                                            | HTML, CSS, JS            | Completed |
+| **Rock-Paper-Scissor** | Playable game against the computer with classic rules                                        | HTML, CSS, JS            | Completed |
+| **Bubble Hit Game**    | A fun bubble-click game where players hit the correct number before time runs out            | HTML, CSS, JS            | Completed |
+| **Image Editor**       | Responsive canvas-based image editor with real-time filters and download support             | HTML, CSS, JS, Canvas API|  Completed |
 
 ---
 

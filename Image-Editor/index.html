@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Editor</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+        <section>
+            <div class="left">
+
+                <div class="top">
+                    <label for="image-input" class="btn btn-primary">
+                        <i class="ri-image-add-line"></i> Choose image
+                        <input type="file" id="image-input" accept="image/*" hidden>
+                    </label>
+
+                    <button class="btn" id="reset-btn">
+                        <i class="ri-restart-line"></i> Reset
+                    </button>
+
+                    <button class="btn" id="download-btn">
+                        <i class="ri-download-2-line"></i> Download
+                    </button>
+                </div>
+                <div class="preset-bar">
+                    <button class="preset-btn" data-preset="original">Original</button>
+                    <button class="preset-btn" data-preset="vivid">Vivid</button>
+                    <button class="preset-btn" data-preset="vintage">Vintage</button>
+                    <button class="preset-btn" data-preset="cool">Cool</button>
+                    <button class="preset-btn" data-preset="warm">Warm</button>
+                    <button class="preset-btn" data-preset="bw">B&W</button>
+                </div>
+
+                <div class="bottom">
+                    <div class="placeholder">
+                        <i class="ri-image-line"></i>
+                        <p>No image chosen</p>
+                        <span>Upload a photo to start editing</span>
+                    </div>
+
+                    <canvas id="image-canvas"></canvas>
+                </div>
+            </div>
+
+            <div class="right">
+                <h2><i class="ri-equalizer-line"></i> Filters</h2>
+
+                <div class="filters"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
