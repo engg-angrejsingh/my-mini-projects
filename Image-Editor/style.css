@@ -148,8 +148,9 @@ main section .top {
 .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 #reset-btn { background-color: #3f3f46; }
 #download-btn { background-color: var(--bg-success-color); }
+#apply-crop-btn { background-color: var(--bg-success-color); }
 
-/* 📽️ CANVAS CONTAINER */
+/* 📽️ CANVAS CONTAINER & CROP UI */
 main section .bottom {
     width: 100%;
     flex: 1;
@@ -166,6 +167,56 @@ main section .bottom {
     overflow: hidden;
 }
 
+/* Wrapper to hold canvas and crop box together */
+#canvas-wrapper {
+    position: relative;
+    display: none; /* Shown via JS when image loads */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* The Draggable Crop Box Overlay */
+#crop-box {
+    position: absolute;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5); /* Dimmed outer area */
+    cursor: move;
+    z-index: 10;
+    display: none; /* Shown only in Crop Mode */
+}
+
+/* Crop Box Resize Handles */
+.handle {
+    width: 12px;
+    height: 12px;
+    background: var(--bg-active-color);
+    border: 2px solid white;
+    position: absolute;
+    border-radius: 50%;
+}
+
+
+/* Crop Mode Toggle - Indigo/Violet */
+#crop-mode-btn {
+    background-color: #4e4f91d5; 
+}
+
+/* Apply Crop - Success Green */
+#apply-crop-btn {
+    background-color: var(--bg-success-color); 
+}
+
+/* Hover effects to keep it interactive */
+#crop-mode-btn:hover {
+     background-color: #4e4f91; 
+}
+
+
+.nw { top: -6px; left: -6px; cursor: nw-resize; }
+.ne { top: -6px; right: -6px; cursor: ne-resize; }
+.sw { bottom: -6px; left: -6px; cursor: sw-resize; }
+.se { bottom: -6px; right: -6px; cursor: se-resize; }
+
 .placeholder {
     text-align: center;
     color: var(--text-muted);
@@ -176,10 +227,10 @@ main section .bottom {
 
 canvas#image-canvas {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 80vh;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     border-radius: 4px;
-    display: none; /* Hidden until upload 📁 */
+    display: block;
 }
 
 /* 📜 CUSTOM SCROLLBAR (Thin & Dark) */

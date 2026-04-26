@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Editor</title>
+    <title>Pro Image Editor</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="theme.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,6 +25,14 @@
                         <input type="file" id="image-input" accept="image/*" hidden>
                     </label>
 
+                    <button class="btn" id="crop-mode-btn">
+                        <i class="ri-crop-line"></i> Crop
+                    </button>
+                    
+                    <button class="btn" id="apply-crop-btn" style="display: none; background-color: var(--bg-success-color);">
+                        <i class="ri-check-line"></i> Apply Crop
+                    </button>
+
                     <button class="btn" id="reset-btn">
                         <i class="ri-restart-line"></i> Reset
                     </button>
@@ -33,6 +41,7 @@
                         <i class="ri-download-2-line"></i> Download
                     </button>
                 </div>
+
                 <div class="preset-bar">
                     <button class="preset-btn" data-preset="original">Original</button>
                     <button class="preset-btn" data-preset="vivid">Vivid</button>
@@ -49,14 +58,23 @@
                         <span>Upload a photo to start editing</span>
                     </div>
 
-                    <canvas id="image-canvas"></canvas>
+                    <div id="canvas-wrapper" style="position: relative; display: none;">
+                        <canvas id="image-canvas"></canvas>
+                        
+                        <div id="crop-box">
+                            <div class="handle nw"></div>
+                            <div class="handle ne"></div>
+                            <div class="handle sw"></div>
+                            <div class="handle se"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="right">
                 <h2><i class="ri-equalizer-line"></i> Filters</h2>
-
-                <div class="filters"></div>
+                <div class="filters">
+                    </div>
             </div>
 
         </section>

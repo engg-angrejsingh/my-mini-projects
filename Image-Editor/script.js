@@ -17,6 +17,10 @@ const imageCanvas = document.querySelector("#image-canvas");
 const imgInput = document.querySelector("#image-input");
 const canvasCtx = imageCanvas.getContext("2d");
 const filtersContainer = document.querySelector(".filters");
+const cropBox = document.querySelector("#crop-box");
+const cropModeBtn = document.querySelector("#crop-mode-btn");
+const applyCropBtn = document.querySelector("#apply-crop-btn");
+const canvasWrapper = document.querySelector("#canvas-wrapper");
 let originalImage = null;
 
 // Function to build filter sliders
@@ -24,18 +28,15 @@ function createFilterElement(key, name, unit, value, min, max) {
     const div = document.createElement("div");
     div.classList.add("filter");
 
-    // Create <p>
     const p = document.createElement("p");
     p.textContent = `${name}: `;
 
-    // Create <span>
     const span = document.createElement("span");
     span.id = `val-${key}`;
     span.textContent = `${value}${unit}`;
 
     p.appendChild(span);
 
-    // Create <input type="range">
     const input = document.createElement("input");
     input.type = "range";
     input.id = key;
@@ -43,21 +44,16 @@ function createFilterElement(key, name, unit, value, min, max) {
     input.max = max;
     input.value = value;
 
-    // Event listener
     input.addEventListener("input", (e) => {
-        const val = Number(e.target.value); // ensure number
+        const val = Number(e.target.value);
         filters[key].value = val;
-
-        span.textContent = `${val}${unit}`; // no DOM lookup needed
-
+        span.textContent = `${val}${unit}`;
         removePresetActive();
         applyFilters();
     });
 
-    // Append everything
     div.appendChild(p);
     div.appendChild(input);
-
     return div;
 }
 
@@ -73,7 +69,7 @@ imgInput.addEventListener("change", (event) => {
     const file = event.target.files[0];
     if (!file) return;
     document.querySelector(".placeholder").style.display = "none";
-    imageCanvas.style.display = "block";
+    canvasWrapper.style.display = "inline-block"; // Show the wrapper instead of just canvas
     const img = new Image();
     img.src = URL.createObjectURL(file);
     img.onload = () => {
@@ -103,13 +99,156 @@ function applyFilters() {
     canvasCtx.drawImage(originalImage, 0, 0);
 }
 
+// --- Crop logic implementation ---
+
+// Toggle Crop Mode UI
+cropModeBtn.addEventListener("click", () => {
+    if (!originalImage) return;
+    const isVisible = cropBox.style.display === "block";
+    if (!isVisible) {
+        cropBox.style.display = "block";
+        applyCropBtn.style.display = "flex";
+        cropModeBtn.innerHTML = '<i class="ri-close-line"></i> Cancel';
+        // Set initial box size and position
+        cropBox.style.width = "200px";
+        cropBox.style.height = "200px";
+        cropBox.style.left = "0px";
+        cropBox.style.top = "0px";
+    } else {
+        closeCropUI();
+    }
+});
+
+function closeCropUI() {
+    cropBox.style.display = "none";
+    applyCropBtn.style.display = "none";
+    cropModeBtn.innerHTML = '<i class="ri-crop-line"></i> Crop';
+}
+
+// Mouse dragging and resizing for the crop box
+let isDragging = false;
+cropBox.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    let startX = e.clientX, startY = e.clientY;
+    let startW = cropBox.offsetWidth, startH = cropBox.offsetHeight;
+    let startL = cropBox.offsetLeft, startT = cropBox.offsetTop;
+    
+    // Get parent boundaries (the canvas wrapper)
+    const parentW = imageCanvas.clientWidth;
+    const parentH = imageCanvas.clientHeight;
+    
+    let type = e.target.classList.contains('handle') ? e.target.classList[1] : null;
+
+    const onMouseMove = (me) => {
+        if (!isDragging) return;
+        let dx = me.clientX - startX;
+        let dy = me.clientY - startY;
+
+        if (!type) { 
+            // --- DRAGGING THE BOX (with boundaries) ---
+            let newLeft = startL + dx;
+            let newTop = startT + dy;
+
+            // Clamp to horizontal bounds
+            if (newLeft < 0) newLeft = 0;
+            if (newLeft + startW > parentW) newLeft = parentW - startW;
+            
+            // Clamp to vertical bounds
+            if (newTop < 0) newTop = 0;
+            if (newTop + startH > parentH) newTop = parentH - startH;
+
+            cropBox.style.left = newLeft + "px";
+            cropBox.style.top = newTop + "px";
+        } else { 
+            // --- RESIZING (with boundaries) ---
+            if (type.includes('e')) {
+                let newW = startW + dx;
+                if (startL + newW > parentW) newW = parentW - startL;
+                cropBox.style.width = Math.max(20, newW) + "px";
+            }
+            if (type.includes('s')) {
+                let newH = startH + dy;
+                if (startT + newH > parentH) newH = parentH - startT;
+                cropBox.style.height = Math.max(20, newH) + "px";
+            }
+            if (type.includes('w')) {
+                let newW = startW - dx;
+                let newLeft = startL + dx;
+                if (newLeft < 0) {
+                    newW = startW + startL;
+                    newLeft = 0;
+                }
+                if (newW > 20) {
+                    cropBox.style.width = newW + "px";
+                    cropBox.style.left = newLeft + "px";
+                }
+            }
+            if (type.includes('n')) {
+                let newH = startH - dy;
+                let newTop = startT + dy;
+                if (newTop < 0) {
+                    newH = startH + startT;
+                    newTop = 0;
+                }
+                if (newH > 20) {
+                    cropBox.style.height = newH + "px";
+                    cropBox.style.top = newTop + "px";
+                }
+            }
+        }
+    };
+
+    const onMouseUp = () => { 
+        isDragging = false; 
+        document.removeEventListener("mousemove", onMouseMove); 
+        document.removeEventListener("mouseup", onMouseUp);
+    };
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+});
+
+// Calculate crop coordinates and apply to image
+applyCropBtn.addEventListener("click", () => {
+    // Determine the scale between CSS display size and actual image pixels
+    const scaleX = imageCanvas.width / imageCanvas.clientWidth;
+    const scaleY = imageCanvas.height / imageCanvas.clientHeight;
+    
+    const x = cropBox.offsetLeft * scaleX;
+    const y = cropBox.offsetTop * scaleY;
+    const w = cropBox.offsetWidth * scaleX;
+    const h = cropBox.offsetHeight * scaleY;
+
+    const tempCanvas = document.createElement("canvas");
+    tempCanvas.width = w; tempCanvas.height = h;
+    const tempCtx = tempCanvas.getContext("2d");
+    
+    // Render the current canvas content (including filters) into the cropped area
+    tempCtx.filter = canvasCtx.filter;
+    tempCtx.drawImage(imageCanvas, x, y, w, h, 0, 0, w, h);
+
+    const croppedImg = new Image();
+    croppedImg.src = tempCanvas.toDataURL();
+    croppedImg.onload = () => {
+        originalImage = croppedImg;
+        imageCanvas.width = w;
+        imageCanvas.height = h;
+        // Reset filter values back to default for the new cropped image
+        Object.keys(filters).forEach(k => filters[k].value = filters[k].default);
+        updateUI();
+        applyFilters();
+        closeCropUI();
+    };
+});
+
+// --- End of crop logic ---
+
 // Reset all settings
 document.querySelector("#reset-btn").addEventListener("click", () => {
     Object.keys(filters).forEach(key => {
         filters[key].value = filters[key].default;
     });
     updateUI();
-    removePresetActive(); // Clear preset button highlights
+    removePresetActive();
     applyFilters();
 });
 
