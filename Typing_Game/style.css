@@ -1,0 +1,257 @@
+/* Import modern fonts: Inter for the UI, JetBrains Mono for typing */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    /* Spatial UI Color Palette */
+    --glass-bg: rgba(30, 30, 35, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.2);
+    
+    --text-main: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.35);
+    --text-correct: #ffffff;
+    --text-incorrect: #ff6b6b; /* Soft coral red */
+    
+    --accent: #a78bfa; /* Soft ethereal violet */
+    
+    --font-ui: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Responsive Typography Variables */
+    --font-size: clamp(1.2rem, 4vw, 2.2rem);
+    --line-height: 1.6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Immersive spatial background mesh gradient */
+    background: radial-gradient(circle at 15% 50%, rgba(60, 30, 110, 0.6), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(20, 80, 100, 0.6), transparent 50%),
+                #050508;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Glassmorphism Monitor Container */
+.monitor {
+    width: 90%;
+    max-width: 900px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px; /* Soft, large spatial curves */
+    padding: clamp(30px, 5vw, 50px);
+    position: relative;
+    /* Soft drop shadow for depth + inner top highlight to mimic glass edge */
+    box-shadow: 
+        0 30px 60px -15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 10;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 20px;
+    font-family: var(--font-ui);
+}
+
+h1 {
+    color: var(--text-main);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.stats {
+    display: flex;
+    gap: clamp(15px, 4vw, 30px);
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+/* Make actual stat numbers pop */
+.stats span, .stats div {
+    color: var(--text-main);
+}
+
+.wpm-display {
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Typing Game Area */
+#game {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    height: calc(var(--font-size) * var(--line-height) * 3);
+    overflow: hidden;
+    outline: none;
+    font-weight: 400;
+}
+
+#words {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.word {
+    display: flex;
+    margin-right: clamp(12px, 3vw, 20px);
+}
+
+.letter {
+    position: relative;
+    transition: color 0.15s ease;
+}
+
+.letter.correct {
+    color: var(--text-correct);
+}
+
+.letter.incorrect {
+    color: var(--text-incorrect);
+    /* Softer underline for errors */
+    border-bottom: 2px solid rgba(255, 107, 107, 0.5); 
+}
+
+/* Modern Spatial Cursor */
+#cursor {
+    position: absolute;
+    width: clamp(2px, 0.5vw, 3px);
+    height: calc(var(--font-size) * 1.1);
+    background-color: var(--accent);
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.6);
+    transition: transform 0.1s cubic-bezier(0.2, 0, 0, 1);
+    animation: blink 1s infinite;
+    border-radius: 4px;
+    z-index: 5;
+    left: 0;
+    top: 2px;
+    pointer-events: none;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Focus Overlay - Frosted Glass State */
+#focus-overlay {
+    position: absolute;
+    inset: -1px; /* Slightly expanded to prevent background bleed at the edges */
+    
+    /* Premium Glass Background */
+    background: rgba(20, 20, 25, 0.45); 
+    backdrop-filter: blur(12px) saturate(140%); /* Reduced blur, added saturation for vibrant glass */
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    
+    /* Physical Glass Edge Highlights */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Text Styling */
+    color: #ffffff;
+    font-family: var(--font-ui);
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Helps text pop against the blurred background */
+    
+    border-radius: inherit; /* Matches the parent container's curve perfectly */
+    z-index: 20;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    
+    /* Smoother Apple-like transition */
+    transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
+}
+
+#game:not(:focus-within) #focus-overlay {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#game:not(:focus-within) #words {
+    filter: blur(6px);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+#game:not(:focus-within) #cursor {
+    display: none;
+}
+
+.controls {
+    margin-top: clamp(30px, 5vw, 40px);
+    text-align: center;
+}
+
+/* Spatial Pill Button */
+button {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    font-family: var(--font-ui);
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    font-weight: 500;
+    border: 1px solid var(--glass-border);
+    border-radius: 100px; /* Pill shape */
+    padding: clamp(10px, 2vw, 14px) clamp(24px, 5vw, 40px);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--glass-highlight);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+/* Hidden input for mobile keyboard triggering */
+#mobile-input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
