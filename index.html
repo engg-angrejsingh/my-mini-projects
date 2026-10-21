@@ -5,25 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Mini Projects</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://github.com/engg-angrejsingh.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3567492819156221"
-        crossorigin="anonymous"></script>
     <style>
         :root {
-            /* Claymorphism Variables */
+            /* Light Mode */
             --bg-color: #e2e8f0;
-            /* Soft pastel gray-blue background */
             --card-bg: #f8fafc;
-            /* Pure, slightly warm white for clay items */
             --text-main: #334155;
             --text-muted: #64748b;
-
-            /* Vibrant Accent for Buttons */
             --accent: #8b5cf6;
-            /* Soft Violet */
             --accent-text: #ffffff;
+            --blue-dot: #3b82f6;
 
-            /* Claymorphism Shadows (Outer Drop + Inner Inset) */
             --clay-shadow:
                 15px 15px 30px rgba(163, 177, 198, 0.5),
                 -5px -5px 15px rgba(255, 255, 255, 0.8),
@@ -40,6 +37,51 @@
                 2px 2px 5px rgba(139, 92, 246, 0.2),
                 inset 4px 4px 10px rgba(0, 0, 0, 0.2),
                 inset -4px -4px 10px rgba(255, 255, 255, 0.2);
+
+            --clay-input-inset: 
+                inset 4px 4px 8px rgba(163, 177, 198, 0.5), 
+                inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+                
+            --nav-bg: rgba(226, 232, 240, 0.75);
+            --dropdown-bg: rgba(248, 250, 252, 0.95);
+            
+            /* Smooth Global Transition Variable */
+            --theme-transition: background-color 0.5s ease, background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+        }
+
+        /* Dark Mode Override */
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #a78bfa;
+            --accent-text: #0f172a;
+            --blue-dot: #60a5fa;
+
+            --clay-shadow:
+                15px 15px 30px rgba(0, 0, 0, 0.4),
+                -5px -5px 15px rgba(255, 255, 255, 0.05),
+                inset -6px -6px 16px rgba(0, 0, 0, 0.2),
+                inset 6px 6px 16px rgba(255, 255, 255, 0.05);
+
+            --clay-btn:
+                8px 8px 16px rgba(0, 0, 0, 0.4),
+                -4px -4px 10px rgba(255, 255, 255, 0.05),
+                inset -4px -4px 10px rgba(0, 0, 0, 0.3),
+                inset 4px 4px 10px rgba(255, 255, 255, 0.1);
+
+            --clay-btn-active:
+                2px 2px 5px rgba(0, 0, 0, 0.5),
+                inset 4px 4px 10px rgba(0, 0, 0, 0.4),
+                inset -4px -4px 10px rgba(255, 255, 255, 0.05);
+
+            --clay-input-inset: 
+                inset 4px 4px 8px rgba(0, 0, 0, 0.5), 
+                inset -4px -4px 8px rgba(255, 255, 255, 0.05);
+
+            --nav-bg: rgba(15, 23, 42, 0.75);
+            --dropdown-bg: rgba(30, 41, 59, 0.95);
         }
 
         body {
@@ -50,12 +92,223 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: var(--theme-transition);
         }
 
-        /* Header */
+        /* --- Top Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--theme-transition);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: var(--clay-shadow);
+            border: 2px solid var(--accent);
+            transition: transform 0.3s ease, var(--theme-transition);
+            cursor: pointer;
+        }
+
+        .nav-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-search {
+            flex-grow: 1;
+            max-width: 400px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .nav-search input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 25px;
+            border: none;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            font-family: "Poppins", sans-serif;
+            font-size: 14px;
+            box-shadow: var(--clay-input-inset);
+            outline: none;
+            transition: var(--theme-transition);
+            box-sizing: border-box;
+        }
+
+        .nav-search input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .nav-search input:focus {
+            box-shadow: var(--clay-shadow);
+        }
+
+        .nav-search svg {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-muted);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            pointer-events: none;
+            transition: stroke 0.5s ease;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* --- Notification Dropdown --- */
+        .notification-wrapper {
+            position: relative;
+        }
+
+        .notification-dropdown {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 300px;
+            background: var(--dropdown-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--clay-shadow);
+            padding: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, var(--theme-transition);
+            z-index: 200;
+        }
+
+        .notification-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .notif-header {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            color: var(--text-main);
+        }
+
+        .notif-item {
+            background-color: var(--bg-color);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05);
+            transition: var(--theme-transition);
+        }
+
+        .notif-item strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .notif-item p {
+            margin: 0;
+            color: var(--text-main);
+            font-family: monospace;
+            background: rgba(0,0,0,0.05);
+            padding: 4px 6px;
+            border-radius: 4px;
+            word-wrap: break-word;
+        }
+
+        [data-theme="dark"] .notif-item p {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .notif-time {
+            display: block;
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        /* --- Buttons --- */
+        .icon-btn {
+            background-color: var(--card-bg);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--clay-shadow);
+            transition: transform 0.3s ease, var(--theme-transition);
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.95);
+            box-shadow: var(--clay-btn-active);
+        }
+
+        .icon-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .blue-dot {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--blue-dot);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--blue-dot);
+            transition: opacity 0.3s ease;
+        }
+
+        /* --- Header / Hero --- */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 50px 20px 30px;
         }
 
         header h1 {
@@ -64,15 +317,25 @@
             margin-bottom: 10px;
             color: var(--text-main);
             letter-spacing: -1px;
+            transition: var(--theme-transition);
+        }
+
+        header h2 {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--accent);
+            margin: 10px 0;
+            transition: color 0.5s ease;
         }
 
         header p {
             color: var(--text-muted);
             font-weight: 500;
             font-size: 18px;
+            transition: var(--theme-transition);
         }
 
-        /* Project Grid */
+        /* --- Project Grid --- */
         .projects {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -84,23 +347,20 @@
             width: calc(100% - 80px);
         }
 
-        /* Claymorphic Card */
         .card {
             background-color: var(--card-bg);
             padding: 35px 25px;
             border-radius: 40px;
-            /* Super rounded corners for clay look */
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-shadow: var(--clay-shadow);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), var(--theme-transition);
         }
 
-        /* Hover float effect */
         .card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-10px) scale(1.02);
         }
 
         .card h2 {
@@ -109,6 +369,7 @@
             font-size: 24px;
             font-weight: 700;
             color: var(--text-main);
+            transition: var(--theme-transition);
         }
 
         .card p {
@@ -118,9 +379,9 @@
             line-height: 1.6;
             font-weight: 500;
             margin-bottom: 25px;
+            transition: var(--theme-transition);
         }
 
-        /* Claymorphic Button */
         .card button {
             margin-top: auto;
             padding: 14px 28px;
@@ -129,39 +390,45 @@
             font-family: "Poppins", sans-serif;
             font-weight: 600;
             font-size: 15px;
-            letter-spacing: 0.5px;
             border: none;
             border-radius: 25px;
-            /* Pill shape */
             cursor: pointer;
             box-shadow: var(--clay-btn);
-            transition: all 0.2s ease;
+            transition: transform 0.2s ease, var(--theme-transition);
         }
 
-        /* Squish effect on hover/click */
         .card button:hover,
         .card button:active {
             transform: scale(0.95);
             box-shadow: var(--clay-btn-active);
         }
 
-        /* Loading Overlay */
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            color: var(--text-muted);
+            font-size: 18px;
+            font-weight: 500;
+            padding: 40px;
+        }
+
+        /* --- Loader --- */
         #loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(226, 232, 240, 0.8);
+            background: var(--nav-bg);
             backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             z-index: 1000;
+            transition: var(--theme-transition);
         }
 
-        /* Clay Spinner */
         .spinner {
             width: 70px;
             height: 70px;
@@ -192,17 +459,9 @@
         }
 
         @keyframes bounceSpin {
-            0% {
-                transform: rotate(0deg) scale(1);
-            }
-
-            50% {
-                transform: rotate(180deg) scale(1.1);
-            }
-
-            100% {
-                transform: rotate(360deg) scale(1);
-            }
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
         /* Typing cursor */
@@ -214,29 +473,140 @@
         }
 
         @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
-        /* Footer */
+        /* --- Footer & Socials --- */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 30px 20px 40px;
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition: var(--theme-transition);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            box-shadow: var(--clay-shadow);
+            transition: transform 0.3s ease, color 0.3s ease, var(--theme-transition);
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-6px) scale(1.05);
+            color: var(--accent);
+        }
+
+        .social-icon:active {
+            transform: scale(0.95);
+            box-shadow: var(--clay-btn-active);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+
+        .footer-text {
             color: var(--text-muted);
             font-weight: 500;
-            margin-top: 40px;
+        }
+
+        /* Sun / Moon Display Logic */
+        [data-theme="dark"] .sun-icon { display: none; }
+        [data-theme="light"] .moon-icon { display: none; }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; flex-wrap: wrap; gap: 15px; }
+            .nav-search { order: 3; max-width: 100%; margin: 0; }
+            .nav-actions { order: 2; }
+            .projects { padding: 20px; width: calc(100% - 40px); }
+            .notification-dropdown { right: -50px; }
         }
     </style>
 </head>
 
 <body>
+    
+    <!-- Top Navigation Bar -->
+    <nav>
+        <!-- Logo Left -->
+        <div class="nav-logo">
+            <a href="https://engg-angrejsingh.github.io/my-mini-projects/">
+            <img src="https://github.com/engg-angrejsingh.png" alt="Profile Picture" title="Angrej Singh">
+            </a>
+        </div>
+
+        <!-- Search Bar Center -->
+        <div class="nav-search">
+            <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search projects...">
+        </div>
+
+        <!-- Icons Right -->
+        <div class="nav-actions">
+            <!-- Notification Icon with Dropdown -->
+            <div class="notification-wrapper">
+                <button class="icon-btn" id="notifBtn" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <div class="blue-dot" id="notifDot"></div>
+                </button>
+                
+                <!-- The Notification Popup -->
+                <div class="notification-dropdown" id="notifDropdown">
+                    <div class="notif-header">Recent Activity</div>
+                    <div class="notif-item">
+                        <strong>GitHub Push</strong>
+                        <p>commit -m "Refactored dark mode transitions for smooth UI"</p>
+                        <span class="notif-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Theme Toggle Button -->
+            <button class="icon-btn theme-toggle" id="themeToggleBtn" aria-label="Toggle Theme">
+                <svg class="sun-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
 
     <header>
         <h1>Hi, I'm Angrej Singh</h1>
@@ -251,11 +621,123 @@
         <p>Loading project...</p>
     </div>
 
+    <!-- Footer with Social Icons -->
     <footer>
-        <p>Made by Angrej Singh</p>
+        <div class="social-links">
+            <!-- GitHub -->
+            <a href="https://github.com/engg-angrejsingh" target="_blank" class="social-icon" aria-label="GitHub">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/angrej-singh-a8a839373/" target="_blank" class="social-icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+            <!-- X (Twitter) -->
+            <a href="https://x.com/AngrejSingh_Dev" target="_blank" class="social-icon" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                </svg>
+            </a>
+        </div>
+        <p class="footer-text">Made by Angrej Singh</p>
     </footer>
 
     <script>
+        // --- Dark/Light Mode Logic ---
+        const themeToggleBtn = document.getElementById("themeToggleBtn");
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        let currentTheme = localStorage.getItem('theme');
+
+        if (!currentTheme) {
+            currentTheme = systemPrefersDark.matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        themeToggleBtn.addEventListener("click", () => {
+            currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            
+            // Spin animation
+            themeToggleBtn.querySelector('svg:not([style*="display: none"])').style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                themeToggleBtn.querySelectorAll('svg').forEach(svg => svg.style.transform = 'none');
+            }, 500);
+        });
+
+        systemPrefersDark.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+            }
+        });
+
+        // --- Notification Logic ---
+        const notifBtn = document.getElementById("notifBtn");
+        const notifDropdown = document.getElementById("notifDropdown");
+        const notifDot = document.getElementById("notifDot");
+
+        notifBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent closing immediately
+            notifDropdown.classList.toggle("show");
+            // Hide the blue dot permanently once clicked
+            if (notifDot) notifDot.style.opacity = '0';
+        });
+
+        // Close dropdown when clicking anywhere else
+        document.addEventListener("click", (e) => {
+            if (!notifDropdown.contains(e.target) && e.target !== notifBtn) {
+                notifDropdown.classList.remove("show");
+            }
+        });
+
+        // --- Projects Data & Search Logic ---
+        const projectsData = [
+            { title: "Calculator", description: "Simple web calculator for basic arithmetic.", url: "./Calculator/" },
+            { title: "To-Do List", description: "Task manager to add and manage daily tasks.", url: "./Todo-List/" },
+            { title: "Rock Paper Scissor", description: "Play the classic game against the computer.", url: "./Rock_Paper_Scissor/" },
+            { title: "Bubble Hit Game", description: "Hit the correct bubble before the timer runs out.", url: "./Bubble_Hit_Game/" },
+            { title: "Image Editor", description: "Edit images instantly with powerful canvas filters", url: "./Image-Editor/" },
+            { title: "Typing Game", description: "Test how fast you can type with this dynamic speed test.", url: "./Typing_Game/" }
+        ];
+
+        const projectContainer = document.getElementById("project-container");
+        const searchInput = document.getElementById("searchInput");
+
+        function renderProjects(filterText = "") {
+            projectContainer.innerHTML = "";
+            const filteredData = projectsData.filter(p => 
+                p.title.toLowerCase().includes(filterText.toLowerCase()) || 
+                p.description.toLowerCase().includes(filterText.toLowerCase())
+            ).sort((a, b) => a.title.localeCompare(b.title));
+
+            if (filteredData.length === 0) {
+                projectContainer.innerHTML = `<p class="no-results">No projects found matching "${filterText}"</p>`;
+                return;
+            }
+
+            filteredData.forEach(project => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <h2>${project.title}</h2>
+                    <p>${project.description}</p>
+                    <button class="view-btn" data-url="${project.url}">View Project</button>
+                `;
+                projectContainer.appendChild(card);
+            });
+        }
+
+        renderProjects();
+
+        searchInput.addEventListener("input", (e) => {
+            renderProjects(e.target.value);
+        });
+
         document.addEventListener("DOMContentLoaded", () => {
             const loader = document.getElementById("loader");
 
@@ -265,30 +747,6 @@
                     loader.style.display = "none";
                 }, 700);
             }
-
-            const projectsData = [
-                { title: "Calculator", description: "Simple web calculator for basic arithmetic.", url: "./Calculator/" },
-                { title: "To-Do List", description: "Task manager to add and manage daily tasks.", url: "./Todo-List/" },
-                { title: "Rock Paper Scissor", description: "Play the classic game against the computer.", url: "./Rock_Paper_Scissor/" },
-                { title: "Bubble Hit Game", description: "Hit the correct bubble before the timer runs out.", url: "./Bubble_Hit_Game/" },
-                { title: "Image Editor", description: "Edit images instantly with powerful canvas filters", url: "./Image-Editor/" },
-                { title: "Typing Game", description: "Test how fast you can type with this dynamic speed test.", url: "./Typing_Game/" }
-            ];
-
-            const projectContainer = document.getElementById("project-container");
-
-            projectsData
-                .sort((a, b) => a.title.localeCompare(b.title))
-                .forEach(project => {
-                    const card = document.createElement("div");
-                    card.className = "card";
-                    card.innerHTML = `
-                        <h2>${project.title}</h2>
-                        <p>${project.description}</p>
-                        <button class="view-btn" data-url="${project.url}">View Project</button>
-                    `;
-                    projectContainer.appendChild(card);
-                });
 
             document.addEventListener("click", function (e) {
                 if (e.target.classList.contains("view-btn")) {
@@ -300,6 +758,7 @@
                 }
             });
 
+            // Typing effect
             const words = [
                 "C • C++ • Java • Python • JavaScript",
                 "Frontend Developer",
