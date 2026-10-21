@@ -116,19 +116,54 @@
             align-items: center;
         }
 
+        /* Logo Ring Animation Wrapper */
+        .nav-logo a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+
+        /* The Spinning Dashed Ring */
+        .nav-logo a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px dashed var(--accent);
+            animation: spinRing 8s linear infinite;
+            opacity: 0.8;
+            transition: var(--theme-transition);
+        }
+
+        @keyframes spinRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .nav-logo img {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: var(--clay-shadow);
-            border: 2px solid var(--accent);
             transition: transform 0.3s ease, var(--theme-transition);
             cursor: pointer;
+            position: relative;
+            z-index: 2;
         }
 
-        .nav-logo img:hover {
-            transform: scale(1.05);
+        .nav-logo a:hover img {
+            transform: scale(1.08);
+        }
+
+        .nav-logo a:hover::before {
+            animation-duration: 4s; /* Spins faster on hover */
+            border-color: var(--blue-dot);
         }
 
         .nav-search {
@@ -552,7 +587,7 @@
         <!-- Logo Left -->
         <div class="nav-logo">
             <a href="https://engg-angrejsingh.github.io/my-mini-projects/">
-            <img src="https://github.com/engg-angrejsingh.png" alt="Profile Picture" title="Angrej Singh">
+                <img src="https://github.com/engg-angrejsingh.png" alt="Profile Picture" title="Angrej Singh">
             </a>
         </div>
 
@@ -701,8 +736,9 @@
             { title: "To-Do List", description: "Task manager to add and manage daily tasks.", url: "./Todo-List/" },
             { title: "Rock Paper Scissor", description: "Play the classic game against the computer.", url: "./Rock_Paper_Scissor/" },
             { title: "Bubble Hit Game", description: "Hit the correct bubble before the timer runs out.", url: "./Bubble_Hit_Game/" },
-            { title: "Image Editor", description: "Edit images instantly with powerful canvas filters", url: "./Image-Editor/" },
-            { title: "Typing Game", description: "Test how fast you can type with this dynamic speed test.", url: "./Typing_Game/" }
+            { title: "Image Editor", description: "Edit images instantly with powerful canvas filters.", url: "./Image-Editor/" },
+            { title: "Typing Game", description: "Test how fast you can type with this dynamic speed test.", url: "./Typing_Game/" },
+            { title: "Gallery Hub", description: "A dynamic visual hub to view an image collection with a full-screen lightbox zoom.", url: "./Gallery_Hub/" }
         ];
 
         const projectContainer = document.getElementById("project-container");

@@ -24,6 +24,7 @@ https://my-mini-projects-ay23.onrender.com/
 | [**Bubble Hit Game**](./Bubble_Hit_Game/) | A fun bubble-click game where players hit the correct number before time runs out            | HTML, CSS, JS            | Completed |
 | [**Image Editor**](./Image-Editor/) | Responsive canvas-based image editor with real-time filters and download support             | HTML, CSS, JS, Canvas API| Completed |
 | [**Typing Game**](./Typing_Game/) | Measure your typing speed (WPM) and accuracy in real-time with an interactive Spatial UI | HTML, CSS, JS            | Completed |
+| [**Gallery Hub**](./Gallery_Hub/) | A dynamic visual hub to view an image collection with a full-screen lightbox zooom| HTML, CSS, JS            | Completed |
 
 ---
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Hub</title>
+     <link rel="icon" type="image/png" href="https://github.com/engg-angrejsingh.png">
+    <link rel="stylesheet" href="style.css">
+<script defer data-domain="galleryhub.tiiny.site" src="https://analytics.tiiny.net/js/plausible.js"></script></head>
+<body>
+
+    <header>
+        <div class="logo">Gallery Hub</div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search gallery...">
+        </div>
+        <button class="theme-toggle-btn" id="themeToggle">
+            <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2M5.314 5.314l-1.414-1.414M18.686 18.686l-1.414-1.414M5.314 18.686l-1.414 1.414M18.686 5.314l-1.414 1.414M12 16a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"></path></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="currentColor"></path></svg>
+        </button>
+    </header>
+
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="nature">Nature</button>
+        <button class="filter-btn" data-filter="city">City</button>
+        <button class="filter-btn" data-filter="animals">Animals</button>
+        <button class="filter-btn" data-filter="tech">Tech</button>
+        <button class="filter-btn" data-filter="food">Food</button>
+    </div>
+
+    <main>
+        <div class="bento-grid" id="galleryGrid">
+            <p id="loadingMsg" style="grid-column: 1/-1; text-align: center;">Loading amazing images...</p>
+        </div>
+    </main>
+
+    <!-- Lightbox Container -->
+    <div class="lightbox" id="lightbox">
+        <img src="" id="lightboxImg" alt="Enlarged View">
+    </div>
+
+    <footer>© 2026 Angrej Singh. All rights reserved.</footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
